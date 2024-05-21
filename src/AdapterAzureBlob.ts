@@ -186,10 +186,10 @@ export class AdapterAzureBlob extends AbstractAdapter {
           expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400),
         };
         let url: string;
-        if (options.useSignedUrl) {
-          url = await file.generateSasUrl(sasOptions);
-        } else {
+        if(options.isPublicFile && !options.forceSignedUrl) {
           url = file.url;
+        } else {
+          url = await file.generateSasUrl(sasOptions);
         }
         return { value: url, error: null };
       } catch (e) {

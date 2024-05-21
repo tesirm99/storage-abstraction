@@ -64,7 +64,9 @@ export class AdapterGoogleCloud extends AbstractAdapter {
   ): Promise<ResultObject> {
     try {
       const file = this._client.bucket(bucketName).file(fileName);
-      if (options.useSignedUrl) {
+      if(options.isPublicFile && !options.forceSignedUrl) {
+        return { value: file.publicUrl(), error: null };
+      } else {
         return {
           value: (await file.getSignedUrl({
             action: "read",
@@ -72,8 +74,6 @@ export class AdapterGoogleCloud extends AbstractAdapter {
           }))[0],
           error: null,
         };
-      } else {
-        return { value: file.publicUrl(), error: null };
       }
     } catch (e) {
       return { value: null, error: e.message };
