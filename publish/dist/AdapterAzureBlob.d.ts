@@ -1,0 +1,30 @@
+import { BlobServiceClient } from "@azure/storage-blob";
+import { AbstractAdapter } from "./AbstractAdapter";
+import { Options, StreamOptions, StorageType } from "./types/general";
+import { FileBufferParams, FilePathParams, FileStreamParams } from "./types/add_file_params";
+import { ResultObject, ResultObjectBoolean, ResultObjectBuckets, ResultObjectFiles, ResultObjectNumber, ResultObjectStream } from "./types/result";
+import { AdapterConfigAzureBlob } from "./types/adapter_azure_blob";
+export declare class AdapterAzureBlob extends AbstractAdapter {
+    protected _type: StorageType;
+    protected _config: AdapterConfigAzureBlob;
+    protected _configError: string | null;
+    protected _client: BlobServiceClient;
+    private sharedKeyCredential;
+    constructor(config: string | AdapterConfigAzureBlob);
+    protected _getFileAsStream(bucketName: string, fileName: string, options: StreamOptions): Promise<ResultObjectStream>;
+    protected _getFileAsURL(bucketName: string, fileName: string, options: Options): Promise<ResultObject>;
+    protected _clearBucket(name: string): Promise<ResultObject>;
+    protected _deleteBucket(name: string): Promise<ResultObject>;
+    protected _listFiles(bucketName: string, numFiles: number): Promise<ResultObjectFiles>;
+    protected _addFile(params: FilePathParams | FileBufferParams | FileStreamParams): Promise<ResultObject>;
+    protected _removeFile(bucketName: string, fileName: string, allVersions: boolean): Promise<ResultObject>;
+    protected _sizeOf(bucketName: string, fileName: string): Promise<ResultObjectNumber>;
+    protected _bucketExists(name: string): Promise<ResultObjectBoolean>;
+    protected _fileExists(bucketName: string, fileName: string): Promise<ResultObjectBoolean>;
+    get config(): AdapterConfigAzureBlob;
+    getConfig(): AdapterConfigAzureBlob;
+    get serviceClient(): BlobServiceClient;
+    getServiceClient(): BlobServiceClient;
+    listBuckets(): Promise<ResultObjectBuckets>;
+    createBucket(name: string, options?: Options): Promise<ResultObject>;
+}
