@@ -216,6 +216,9 @@ class AdapterLocal extends AbstractAdapter_1.AbstractAdapter {
             try {
                 const p = path_1.default.join(this._config.directory, bucketName, fileName);
                 yield fs_1.default.promises.access(p);
+                if (options.withoutDirectory) {
+                    return { value: path_1.default.join(bucketName, fileName), error: null };
+                }
                 return { value: p, error: null };
             }
             catch (e) {

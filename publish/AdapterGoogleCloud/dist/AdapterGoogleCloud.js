@@ -59,11 +59,22 @@ class AdapterGoogleCloud extends AbstractAdapter_1.AbstractAdapter {
         }
     }
     // protected, called by methods of public API via AbstractAdapter
-    _getFileAsURL(bucketName, fileName) {
+    _getFileAsURL(bucketName, fileName, options) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const file = this._client.bucket(bucketName).file(fileName);
-                return { value: file.publicUrl(), error: null };
+                if (options.isPublicFile && !options.forceSignedUrl) {
+                    return { value: file.publicUrl(), error: null };
+                }
+                else {
+                    return {
+                        value: yield file.getSignedUrl({
+                            action: 'read',
+                            expires: options.expiresOn || 86400,
+                        })[0],
+                        error: null
+                    };
+                }
             }
             catch (e) {
                 return { value: null, error: e.message };

@@ -10,7 +10,7 @@ export declare class AdapterGoogleCloud extends AbstractAdapter {
     protected _configError: string | null;
     protected _client: GoogleCloudStorage;
     constructor(config?: string | AdapterConfigGoogleCloud);
-    protected _getFileAsURL(bucketName: string, fileName: string): Promise<ResultObject>;
+    protected _getFileAsURL(bucketName: string, fileName: string, options?: Options): Promise<ResultObject>;
     protected _getFileAsStream(bucketName: string, fileName: string, options: StreamOptions): Promise<ResultObjectStream>;
     protected _removeFile(bucketName: string, fileName: string, allVersions: boolean): Promise<ResultObject>;
     protected _addFile(params: FilePathParams | FileBufferParams | FileStreamParams): Promise<ResultObject>;

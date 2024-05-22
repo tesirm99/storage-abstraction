@@ -1,14 +1,11 @@
 {
-  "name": "@tweedegolf/sab-adapter-google-cloud",
-  "version": "1.0.8",
-  "description": "Provides an abstraction layer for interacting with Google Cloud storage service.",
+  "name": "@tesirm/sab-adapter-google-cloud",
+  "version": "1.0.6",
+  "description": "This is a fork of @tweedegolf's package. It provides an abstraction layer for interacting with Google Cloud storage service.",
   "main": "dist/index/AdapterGoogleCloud.js",
   "types": "dist/index/AdapterGoogleCloud.d.ts",
-  "homepage": "https://github.com/tweedegolf/storage-abstraction/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tweedegolf/storage-abstraction.git"
-  },
+  "homepage": "https://github.com/tesirm99/storage-abstraction/",
+  "repository": "https://github.com/tesirm99/storage-abstraction/",
   "dependencies": {
     "@google-cloud/storage": "^7.11.1"
   },
@@ -25,7 +22,7 @@
     "minio",
     "azure"
   ],
-  "author": "daniel@tweedegolf.nl",
+  "author": "daniel@tweedegolf.nl, tesiroblesmarin@gmail.com",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

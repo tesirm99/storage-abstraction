@@ -1,11 +1,11 @@
 {
-  "name": "@tweedegolf/sab-adapter-azure-blob",
-  "version": "1.0.7",
-  "description": "Provides an abstraction layer for interacting with Microsoft Azure Blob Storage cloud service.",
+  "name": "@tesirm/sab-adapter-azure-blob",
+  "version": "1.0.5",
+  "description": "This is a fork of @tweedegolf's package. This is an abstraction layer for interacting with Microsoft Azure Blob Storage cloud service.",
   "main": "dist/index/AdapterAzureBlob.js",
   "types": "dist/index/AdapterAzureBlob.d.ts",
-  "homepage": "https://github.com/tweedegolf/storage-abstraction/",
-  "repository": "https://github.com/tweedegolf/storage-abstraction/",
+  "homepage": "https://github.com/tesirm99/storage-abstraction/",
+  "repository": "https://github.com/tesirm99/storage-abstraction/",
   "dependencies": {
     "@azure/storage-blob": "^12.17.0",
     "@azure/identity": "^4.0.1"
@@ -23,7 +23,7 @@
     "cubbit",
     "minio"
   ],
-  "author": "daniel@tweedegolf.nl",
+  "author": "daniel@tweedegolf.nl, tesiroblesmarin@gmail.com",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

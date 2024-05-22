@@ -163,11 +163,17 @@ class AdapterAzureBlob extends AbstractAdapter_1.AbstractAdapter {
                     };
                 }
                 try {
-                    const options = {
-                        permissions: storage_blob_1.BlobSASPermissions.parse("r"),
-                        expiresOn: new Date(new Date().valueOf() + 86400),
+                    const sasOptions = {
+                        permissions: options.permissions || storage_blob_1.BlobSASPermissions.parse("r"),
+                        expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400),
                     };
-                    const url = yield file.generateSasUrl(options);
+                    let url;
+                    if (options.isPublicFile && !options.forceSignedUrl) {
+                        url = file.url;
+                    }
+                    else {
+                        url = yield file.generateSasUrl(sasOptions);
+                    }
                     return { value: url, error: null };
                 }
                 catch (e) {
