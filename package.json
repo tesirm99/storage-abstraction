@@ -1,11 +1,11 @@
 {
-  "name": "@tweedegolf/storage-abstraction",
+  "name": "@tesirm/storage-abstraction",
   "version": "2.1.3",
-  "description": "Provides an abstraction layer for interacting with a storage; the storage can be local or in the cloud.",
+  "description": "This is a fork of @tweedegolf's storage-abstraction package. It is a library that provides a common interface for interacting with various cloud storage providers.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/tweedegolf/storage-abstraction/",
-  "repository": "https://github.com/tweedegolf/storage-abstraction/",
+  "homepage": "https://github.com/tesirm99/storage-abstraction/",
+  "repository": "https://github.com/tesirm99/storage-abstraction/",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.550.0",
     "@aws-sdk/s3-request-presigner": "^3.550.0",
@@ -79,7 +79,7 @@
     "minio",
     "azure"
   ],
-  "author": "daniel@tweedegolf.nl",
+  "author": "daniel@tweedegolf.nl, tesiroblesmarin@gmail.com",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

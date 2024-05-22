@@ -1,11 +1,11 @@
 {
-  "name": "@tweedegolf/sab-adapter-local",
+  "name": "@tesirm/sab-adapter-local",
   "version": "1.0.6",
-  "description": "Provides an abstraction layer for interacting with local storage on your local machine or on your server.",
+  "description": "This is a fork of @tweedegolf's package. It provides an abstraction layer for interacting with local storage on your local machine or on your server.",
   "main": "dist/index/AdapterLocal.js",
   "types": "dist/index/AdapterLocal.d.ts",
-  "homepage": "https://github.com/tweedegolf/storage-abstraction/",
-  "repository": "https://github.com/tweedegolf/storage-abstraction/",
+  "homepage": "https://github.com/tesirm99/storage-abstraction/",
+  "repository": "https://github.com/tesirm99/storage-abstraction/",
   "dependencies": {
     "glob": "^10.3.12",
     "rimraf": "^5.0.5"
@@ -24,7 +24,7 @@
     "minio",
     "azure"
   ],
-  "author": "daniel@tweedegolf.nl",
+  "author": "daniel@tweedegolf.nl, tesiroblesmarin@gmail.com",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
