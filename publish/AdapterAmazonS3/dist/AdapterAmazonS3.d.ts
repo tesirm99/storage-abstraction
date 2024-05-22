@@ -1,0 +1,31 @@
+import { S3Client } from "@aws-sdk/client-s3";
+import { AbstractAdapter } from "./AbstractAdapter";
+import { Options, StreamOptions, StorageType } from "./types/general";
+import { FileBufferParams, FilePathParams, FileStreamParams } from "./types/add_file_params";
+import { ResultObject, ResultObjectBoolean, ResultObjectBuckets, ResultObjectFiles, ResultObjectNumber, ResultObjectStream } from "./types/result";
+import { AdapterConfigAmazonS3 } from "./types/adapter_amazon_s3";
+export declare class AdapterAmazonS3 extends AbstractAdapter {
+    protected _type: StorageType;
+    protected _config: AdapterConfigAmazonS3;
+    protected _configError: string | null;
+    protected _client: S3Client;
+    constructor(config?: string | AdapterConfigAmazonS3);
+    private getFiles;
+    private getFileVersions;
+    protected _getFileAsStream(bucketName: string, fileName: string, options: StreamOptions): Promise<ResultObjectStream>;
+    protected _removeFile(bucketName: string, fileName: string, allVersions: boolean): Promise<ResultObject>;
+    protected _clearBucket(bucketName: string): Promise<ResultObject>;
+    protected _deleteBucket(bucketName: string): Promise<ResultObject>;
+    protected _addFile(params: FilePathParams | FileBufferParams | FileStreamParams): Promise<ResultObject>;
+    protected _getFileAsURL(bucketName: string, fileName: string, options: Options): Promise<ResultObject>;
+    protected _listFiles(bucketName: string, numFiles: number): Promise<ResultObjectFiles>;
+    protected _sizeOf(bucketName: string, fileName: string): Promise<ResultObjectNumber>;
+    protected _bucketExists(bucketName: string): Promise<ResultObjectBoolean>;
+    protected _fileExists(bucketName: string, fileName: string): Promise<ResultObjectBoolean>;
+    get config(): AdapterConfigAmazonS3;
+    getConfig(): AdapterConfigAmazonS3;
+    get serviceClient(): S3Client;
+    getServiceClient(): S3Client;
+    listBuckets(): Promise<ResultObjectBuckets>;
+    createBucket(bucketName: string, options?: Options): Promise<ResultObject>;
+}
