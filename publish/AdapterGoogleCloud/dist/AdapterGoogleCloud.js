@@ -63,17 +63,27 @@ class AdapterGoogleCloud extends AbstractAdapter_1.AbstractAdapter {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const file = this._client.bucket(bucketName).file(fileName);
-                if (options.isPublicFile && !options.forceSignedUrl) {
-                    return { value: file.publicUrl(), error: null };
+                const [exists] = yield file.exists();
+                if (!exists) {
+                    return { value: null, error: `File '${fileName}' does not exist in bucket '${bucketName}'.` };
                 }
-                else {
-                    return {
-                        value: yield file.getSignedUrl({
+                try {
+                    if (options.isPublicFile && !options.forceSignedUrl) {
+                        return { value: file.publicUrl(), error: null };
+                    }
+                    else {
+                        const [signedURL] = yield file.getSignedUrl({
                             action: 'read',
-                            expires: options.expiresOn || 86400,
-                        })[0],
-                        error: null
-                    };
+                            expires: options.expiresOn || Date.now() + 1000 * 60 * 60,
+                        });
+                        return {
+                            value: signedURL,
+                            error: null
+                        };
+                    }
+                }
+                catch (e) {
+                    return { value: null, error: e.message };
                 }
             }
             catch (e) {

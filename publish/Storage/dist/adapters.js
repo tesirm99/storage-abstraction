@@ -5,9 +5,9 @@ exports.getAvailableAdapters = exports.adapterFunctions = exports.adapterClasses
 exports.adapterClasses = {
     b2: ["AdapterBackblazeB2", "@tweedegolf/sab-adapter-backblaze-b2"],
     s3: ["AdapterAmazonS3", "@tweedegolf/sab-adapter-amazon-s3"],
-    gcs: ["AdapterGoogleCloud", "@tweedegolf/sab-adapter-google-cloud"],
-    local: ["AdapterLocal", "@tweedegolf/sab-adapter-local"],
-    azure: ["AdapterAzureBlob", "@tweedegolf/sab-adapter-azure-blob"],
+    gcs: ["AdapterGoogleCloud", "@tesirm/sab-adapter-google-cloud"],
+    local: ["AdapterLocal", "@tesirm/sab-adapter-local"],
+    azure: ["AdapterAzureBlob", "@tesirm/sab-adapter-azure-blob"],
     minio: ["AdapterMinio", "@tweedegolf/sab-adapter-minio"],
 };
 // or here for functional adapters
