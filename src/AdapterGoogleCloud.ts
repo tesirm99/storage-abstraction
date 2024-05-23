@@ -61,16 +61,25 @@ export class AdapterGoogleCloud extends AbstractAdapter {
   protected async _getFileAsURL(bucketName: string, fileName: string, options?: Options): Promise<ResultObject> {
     try {
       const file = this._client.bucket(bucketName).file(fileName);
-      if(options.isPublicFile && !options.forceSignedUrl) {
-        return { value: file.publicUrl(), error: null };
-      } else {
-        return {
-          value: await file.getSignedUrl({
+      const [exists] = await file.exists();
+      if (!exists) {
+        return { value: null, error: `File '${fileName}' does not exist in bucket '${bucketName}'.` };
+      }
+      try {
+        if(options.isPublicFile && !options.forceSignedUrl) {
+          return { value: file.publicUrl(), error: null };
+        } else {
+          const [signedURL] = await file.getSignedUrl({
             action: 'read',
-            expires: options.expiresOn || 86400,
-          })[0],
-          error: null
+            expires: options.expiresOn || Date.now() + 1000 * 60 * 60,
+          });
+          return {
+            value: signedURL,
+            error: null
+          }
         }
+      } catch (e) {
+        return { value: null, error: e.message };
       }
     } catch (e) {
       return { value: null, error: e.message };

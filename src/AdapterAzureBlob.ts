@@ -183,7 +183,7 @@ export class AdapterAzureBlob extends AbstractAdapter {
       try {
         const sasOptions: BlobGenerateSasUrlOptions = {
           permissions: options.permissions || BlobSASPermissions.parse("r"),
-          expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400),
+          expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400).toISOString(),
         };
         let url: string;
         if(options.isPublicFile && !options.forceSignedUrl) {

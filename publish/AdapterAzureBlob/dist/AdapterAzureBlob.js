@@ -165,7 +165,7 @@ class AdapterAzureBlob extends AbstractAdapter_1.AbstractAdapter {
                 try {
                     const sasOptions = {
                         permissions: options.permissions || storage_blob_1.BlobSASPermissions.parse("r"),
-                        expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400),
+                        expiresOn: options.expiresOn || new Date(new Date().valueOf() + 86400).toISOString(),
                     };
                     let url;
                     if (options.isPublicFile && !options.forceSignedUrl) {
