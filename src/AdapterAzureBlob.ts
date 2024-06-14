@@ -272,7 +272,10 @@ export class AdapterAzureBlob extends AbstractAdapter {
         .getContainerClient(params.bucketName)
         .getBlobClient(params.targetPath)
         .getBlockBlobClient();
-      const writeStream = await file.uploadStream(readStream, 64000, 20, params.options);
+      const options = {
+        blobHTTPHeaders: { blobContentType: params.options.contentType || "application/octet-stream" },
+      };
+      const writeStream = await file.uploadStream(readStream, 64000, 20, options);
       if (writeStream.errorCode) {
         return { value: null, error: writeStream.errorCode };
       } else {
