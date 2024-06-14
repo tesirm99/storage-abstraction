@@ -1,6 +1,6 @@
 {
   "name": "@tesirm/sab-adapter-azure-blob",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This is a fork of @tweedegolf's package. This is an abstraction layer for interacting with Microsoft Azure Blob Storage cloud service.",
   "main": "dist/index/AdapterAzureBlob.js",
   "types": "dist/index/AdapterAzureBlob.d.ts",
